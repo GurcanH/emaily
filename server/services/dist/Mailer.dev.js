@@ -25,10 +25,20 @@ var Mailer =
 function (_helper$Mail) {
   _inherits(Mailer, _helper$Mail);
 
-  function Mailer() {
+  function Mailer(_ref, content) {
+    var _this;
+
+    var subject = _ref.subject,
+        recipients = _ref.recipients;
+
     _classCallCheck(this, Mailer);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Mailer).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Mailer).call(this));
+    _this.from_email = new helper.Email('gurcanhamali@gmail.com');
+    _this.subject = subject;
+    _this.body = new helper.Content('text/html', content);
+    _this.recipients = _this.formatAddresses(recipients);
+    return _this;
   }
 
   return Mailer;
