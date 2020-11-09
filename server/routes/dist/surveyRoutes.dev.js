@@ -21,7 +21,7 @@ module.exports = function (app) {
       body: body,
       repients: recipients.split(',').map(function (email) {
         return {
-          email: email
+          email: email.trim()
         };
       }),
       _user: req.user.id,
