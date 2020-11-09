@@ -38,6 +38,7 @@ function (_helper$Mail) {
     _classCallCheck(this, Mailer);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Mailer).call(this));
+    _this.sgApi = sendgrid(keys.sendGridKey);
     _this.from_email = new helper.Email('gurcanhamali@gmail.com');
     _this.subject = subject;
     _this.body = new helper.Content('text/html', content);
@@ -76,6 +77,29 @@ function (_helper$Mail) {
         personalize.addTo(recipient);
       });
       this.addPersonalization(personalize);
+    }
+  }, {
+    key: "send",
+    value: function send() {
+      var request, response;
+      return regeneratorRuntime.async(function send$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              request = this.sgApi.emptyRequest({
+                method: 'POST',
+                path: '/v3/mail/send',
+                body: this.toJSON()
+              });
+              response = this.sgApi.API(request);
+              return _context.abrupt("return", response);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
     }
   }]);
 
