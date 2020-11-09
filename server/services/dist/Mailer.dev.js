@@ -91,15 +91,24 @@ function (_helper$Mail) {
                 path: '/v3/mail/send',
                 body: this.toJSON()
               });
-              response = this.sgApi.API(request);
+              _context.prev = 1;
+              _context.next = 4;
+              return regeneratorRuntime.awrap(this.sgApi.API(request));
+
+            case 4:
+              response = _context.sent;
               return _context.abrupt("return", response);
 
-            case 3:
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](1);
+
+            case 10:
             case "end":
               return _context.stop();
           }
         }
-      }, null, this);
+      }, null, this, [[1, 8]]);
     }
   }]);
 

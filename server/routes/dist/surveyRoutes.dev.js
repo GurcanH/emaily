@@ -23,7 +23,7 @@ module.exports = function (app) {
       title: title,
       subject: subject,
       body: body,
-      repients: recipients.split(',').map(function (email) {
+      recipients: recipients.split(',').map(function (email) {
         return {
           email: email.trim()
         };
@@ -33,5 +33,6 @@ module.exports = function (app) {
     }); // Greate place to send and email!
 
     var mailer = new Mailer(survey, surveyTemplate(survey));
+    mailer.send();
   });
 };
