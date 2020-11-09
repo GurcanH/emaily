@@ -6,6 +6,10 @@ var requireLogin = require('../middlewares/requireLogin');
 
 var requireCredits = require('../middlewares/requireCredits');
 
+var Mailer = require('../services/Mailer');
+
+var surveyTemplate = require('../services/emailTemplates/surveyTemplate');
+
 var Survey = mongoose.model('surveys');
 
 module.exports = function (app) {
@@ -26,6 +30,8 @@ module.exports = function (app) {
       }),
       _user: req.user.id,
       dateSent: Date.now()
-    });
+    }); // Greate place to send and email!
+
+    var mailer = new Mailer(survey, surveyTemplate(survey));
   });
 };
